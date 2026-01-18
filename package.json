@@ -1,0 +1,73 @@
+{
+  "name": "poe-jira-web-ui",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "test:ci": "ng test --watch=false --coverage",
+    "serve:ssr:poe-jira-web-ui": "node dist/poe-jira-web-ui/server/server.mjs",
+    "lint": "ng lint",
+    "lint:fix": "ng lint --fix",
+    "format": "prettier --write \"src/*/.{ts,html,scss,json,md}\"",
+    "format:check": "prettier --check \"src/*/.{ts,html,scss,json,md}\"",
+    "prepare": "husky install"
+  },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "overrides": [
+      {
+        "files": "*.html",
+        "options": {
+          "parser": "angular"
+        }
+      }
+    ]
+  },
+  "lint-staged": {
+    "*.ts": "eslint --fix",
+    "*.{ts, html, scss, json, md}": [
+      "prettier --write"
+    ]
+  },
+  "private": true,
+  "packageManager": "npm@11.6.2",
+  "dependencies": {
+    "@angular/cdk": "~21.1.0",
+    "@angular/common": "^21.1.0",
+    "@angular/compiler": "^21.1.0",
+    "@angular/core": "^21.1.0",
+    "@angular/forms": "^21.1.0",
+    "@angular/platform-browser": "^21.1.0",
+    "@angular/platform-server": "^21.1.0",
+    "@angular/router": "^21.1.0",
+    "@angular/ssr": "^21.1.0",
+    "express": "^5.1.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^21.1.0",
+    "@angular/build": "^21.1.0",
+    "@angular/cdk": "^21.1.0",
+    "@angular/cli": "^21.1.0",
+    "@angular/compiler-cli": "^21.1.0",
+    "@types/express": "^5.0.1",
+    "@types/jasmine": "^4.3.1",
+    "@types/node": "^20.17.19",
+    "@vitest/coverage-v8": "^4.0.17",
+    "angular-eslint": "21.1.0",
+    "eslint": "^9.39.1",
+    "husky": "^8.0.3",
+    "jsdom": "^27.1.0",
+    "karma": "^6.4.2",
+    "karma-chrome-launcher": "^3.2.0",
+    "karma-coverage": "^2.2.0",
+    "karma-jasmine": "^5.1.0",
+    "typescript": "~5.9.2",
+    "typescript-eslint": "8.47.0"
+  }
+}
