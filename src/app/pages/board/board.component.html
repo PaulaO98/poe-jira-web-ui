@@ -1,0 +1,63 @@
+<div style="padding: 16px">
+  <h2>Board - Project {{ projectId }}</h2>
+
+  <div *ngIf="loading" style="margin: 8px 0">Cargando...</div>
+  <div *ngIf="error" style="color: #b00020; margin: 8px 0">{{ error }}</div>
+
+  <div
+    *ngIf="data"
+    style="display: flex; gap: 12px; align-items: flex-start; overflow-x: auto; padding-top: 10px"
+  >
+    <div
+      *ngFor="let col of data.columns; trackBy: trackCol"
+      style="min-width: 320px; background: #c9bfcd; border-radius: 10px; padding: 12px"
+    >
+      <div
+        style="display: flex; justify-content: space-between; align-items: center; color: #372031"
+      >
+        <strong>{{ col.name }}</strong>
+        <small style="opacity: 0.7">WIP: {{ col.wipLimit ?? '∞' }}</small>
+      </div>
+
+      <!-- Crear issue -->
+      <div style="display: flex; gap: 8px; margin: 10px 0">
+        <input
+          [formControl]="col.newTitle"
+          placeholder="Nueva issue..."
+          style="flex: 1; padding: 8px; border-radius: 8px; border: 1px solid #ddd"
+        />
+        <button (click)="createIssue(col)" style="padding: 8px 12px">+</button>
+      </div>
+
+      <!-- Lista drag/drop -->
+      <div
+        cdkDropList
+        [id]="dropListId(col.id)"
+        [cdkDropListData]="col.issues"
+        [cdkDropListConnectedTo]="dropListIds"
+        (cdkDropListDropped)="onDrop($event, col)"
+        style="min-height: 140px; display: flex; flex-direction: column; gap: 8px"
+      >
+        <div
+          *ngFor="let issue of col.issues; trackBy: trackIssue"
+          cdkDrag
+          style="
+            background: rgb(203, 193, 203);
+            border: 1px solid #65435c;
+            border-radius: 10px;
+            padding: 10px;
+          "
+        >
+          <div style="font-weight: 600">{{ issue.title }}</div>
+          <div style="font-size: 12px; opacity: 0.7">
+            #{{ issue.issueNumber ?? issue.id }} · Col {{ issue.columnId }}
+          </div>
+        </div>
+
+        <div *ngIf="col.issues.length === 0" style="opacity: 0.6; font-size: 13px; padding: 6px">
+          (sin issues)
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

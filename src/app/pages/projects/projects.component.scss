@@ -1,0 +1,37 @@
+.prj__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 14px;
+}
+
+.prj__title { margin: 0; font-size: 22px; }
+.prj__subtitle { margin: 6px 0 0; color: var(--text-2); }
+
+.prj__create {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.prj__input { flex: 1; }
+
+.prj__state { color: var(--text-2); }
+.prj__state--error { color: var(--danger); margin-top: 10px; }
+
+.prj__list { display: grid; gap: 10px; }
+.prj__link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.03);
+  transition: background .15s ease;
+}
+.prj__link:hover { background: rgba(255,255,255,.05); text-decoration: none; }
+
+.prj__name { font-weight: 700; }
+.prj__meta { color: var(--text-2); font-size: 13px; }

@@ -1,0 +1,13 @@
+<header class="topbar">
+  <div class="topbar__left">
+    <a class="topbar__brand" [routerLink]="['/workspaces']">{{ title }}</a>
+    <nav class="topbar__nav">
+      <a class="topbar__link" [routerLink]="['/workspaces']">Workspaces</a>
+    </nav>
+  </div>
+
+  <div class="topbar__right">
+  <span class="topbar__user" *ngIf="userName">Hola, {{ userName }}</span>
+    <app-ui-button variant="ghost" (click)="logout.emit()">Logout</app-ui-button>
+  </div>
+</header>

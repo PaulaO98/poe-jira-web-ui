@@ -1,0 +1,100 @@
+.ws {
+  display: grid;
+  gap: 14px;
+}
+
+.ws__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.ws__heading {
+  display: grid;
+  gap: 6px;
+}
+
+.ws__title {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: 0.2px;
+}
+
+.ws__subtitle {
+  margin: 0;
+  color: var(--text-2);
+}
+
+.ws__toolbar {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: center;
+}
+
+.ws__input {
+  min-width: 0;
+}
+
+.ws__message {
+  margin-top: 10px;
+  color: var(--text-2);
+  font-size: 13px;
+}
+.ws__message--error {
+  color: var(--danger);
+}
+
+.ws__list {
+  display: grid;
+  gap: 10px;
+}
+
+.ws__card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.05s ease;
+}
+
+.ws__card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.16);
+  text-decoration: none;
+}
+
+.ws__card:active {
+  transform: translateY(1px);
+}
+
+.ws__cardLeft {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.ws__name {
+  font-weight: 800;
+  line-height: 1.2;
+}
+.ws__meta {
+  color: var(--text-2);
+  font-size: 12px;
+}
+
+.ws__open {
+  color: var(--text-2);
+  font-size: 13px;
+}
+
+.ws__empty {
+  padding: 10px 0;
+  color: var(--muted);
+  font-size: 13px;
+}

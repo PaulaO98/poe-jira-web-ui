@@ -1,0 +1,13 @@
+<div class="app">
+  <app-topbar
+    [title]="'JIRA MVP'"
+    [userName]="userName"
+    (logout)="logout()"
+  ></app-topbar>
+
+  <main class="app__main">
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

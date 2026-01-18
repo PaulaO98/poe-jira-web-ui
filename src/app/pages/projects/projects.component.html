@@ -1,0 +1,33 @@
+<section class="prj">
+  <header class="prj__header">
+    <div>
+      <h1 class="prj__title">Projects</h1>
+      <p class="prj__subtitle">Workspace {{ workspaceId }}</p>
+    </div>
+  </header>
+
+  <app-ui-card>
+    <div class="prj__create">
+      <input class="input prj__input" [formControl]="nameCtrl" placeholder="Nombre del proyecto" />
+  <app-ui-button (click)="create()" [loading]="creating">Crear</app-ui-button>
+    </div>
+
+  <div class="prj__state prj__state--error" *ngIf="createError">{{ createError }}</div>
+
+    <hr class="hr" />
+
+    <ng-container *ngIf="vm$ | async as vm">
+      <div class="prj__state" *ngIf="vm.loading">Cargando...</div>
+      <div class="prj__state prj__state--error" *ngIf="vm.error">{{ vm.error }}</div>
+
+      <ul class="prj__list" *ngIf="!vm.loading && !vm.error">
+        <li class="prj__item" *ngFor="let p of vm.projects; trackBy: trackPrj">
+          <a class="prj__link" [routerLink]="['/projects', p?.id, 'board']">
+            <div class="prj__name">{{ p?.name }}</div>
+            <div class="prj__meta">Board →</div>
+          </a>
+        </li>
+      </ul>
+    </ng-container>
+  </app-ui-card>
+</section>

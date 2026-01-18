@@ -1,0 +1,42 @@
+<section class="ws">
+  <header class="ws__header">
+    <div class="ws__heading">
+      <h1 class="ws__title">Workspaces</h1>
+      <p class="ws__subtitle">Organiza proyectos por espacio de trabajo.</p>
+    </div>
+  </header>
+
+  <app-ui-card>
+    <div class="ws__toolbar">
+      <input class="input ws__input" [formControl]="nameCtrl" placeholder="Nombre del workspace" />
+  <app-ui-button (click)="create()" [loading]="creating">Crear</app-ui-button>
+    </div>
+
+  <div class="ws__message ws__message--error" *ngIf="createError">{{ createError }}</div>
+
+    <hr class="hr" />
+
+    <ng-container *ngIf="vm$ | async as vm">
+      <div class="ws__message" *ngIf="vm.loading">Cargando...</div>
+      <div class="ws__message ws__message--error" *ngIf="vm.error">{{ vm.error }}</div>
+
+      <ul class="ws__list" *ngIf="!vm.loading && !vm.error">
+        <li class="ws__item" *ngFor="let w of vm.workspaces; trackBy: trackWs">
+          <a class="ws__card" [routerLink]="['/workspaces', w?.id, 'projects']">
+            <div class="ws__cardLeft">
+              <div class="ws__name">{{ w?.name }}</div>
+              <div class="ws__meta">ID: {{ w?.id }}</div>
+            </div>
+            <div class="ws__cardRight">
+              <span class="ws__open">Abrir →</span>
+            </div>
+          </a>
+        </li>
+      </ul>
+
+      <div class="ws__empty" *ngIf="!vm.loading && !vm.error && (vm.workspaces.length === 0)">
+        No tienes workspaces aún. Crea el primero arriba.
+      </div>
+    </ng-container>
+  </app-ui-card>
+</section>

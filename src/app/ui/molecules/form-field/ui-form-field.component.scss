@@ -1,0 +1,26 @@
+.field {
+  display: grid;
+  gap: 6px;
+}
+.field__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.field__label {
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.field__control .input {
+
+  width: 100%;
+}
+.field__hint {
+  font-size: 12px;
+  color: var(--muted);
+}
+.field__error {
+  font-size: 12px;
+  color: var(--danger);
+}

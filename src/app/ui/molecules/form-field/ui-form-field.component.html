@@ -1,0 +1,12 @@
+<!-- eslint-disable @angular-eslint/template/label-has-associated-control -->
+<div class="field">
+  <label class="field__label">{{ label }}</label>
+
+  <div class="field__control">
+    <ng-content></ng-content>
+  </div>
+
+  <span class="field__hint" *ngIf="hint && !error">{{ hint }}</span>
+
+  <div class="field__error" *ngIf="error">{{ error }}</div>
+</div>

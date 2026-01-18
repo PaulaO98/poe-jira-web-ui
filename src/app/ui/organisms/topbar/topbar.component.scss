@@ -1,0 +1,50 @@
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 16px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(17, 24, 39, 0.92);
+  backdrop-filter: blur(10px);
+}
+
+.topbar__left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.topbar__brand {
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+
+.topbar__nav {
+  display: flex;
+  gap: 10px;
+}
+
+.topbar__link {
+  color: var(--text-2);
+  font-size: 13px;
+}
+.topbar__link:hover {
+  color: var(--text);
+}
+
+.topbar__right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.topbar__user {
+  color: var(--text-2);
+  font-size: 13px;
+}

@@ -1,0 +1,27 @@
+<section class="auth">
+  <div class="auth__wrap">
+    <app-ui-card>
+      <header class="auth__header">
+        <h1 class="auth__title">Iniciar sesión</h1>
+        <p class="auth__subtitle">Accede a tu tablero estilo Jira (MVP).</p>
+      </header>
+
+      <form class="auth__form" [formGroup]="form" (ngSubmit)="submit()">
+        <app-ui-form-field label="Email" [error]="errorEmail">
+          <input class="input" type="email" formControlName="email" placeholder="tu@email.com" />
+        </app-ui-form-field>
+
+        <app-ui-form-field label="Password" [error]="errorPassword">
+          <input class="input" type="password" formControlName="password" placeholder="********" />
+        </app-ui-form-field>
+
+        <div class="auth__actions">
+          <app-ui-button type="submit" [loading]="loading">Entrar</app-ui-button>
+          <a class="auth__link" routerLink="/register">Crear cuenta</a>
+        </div>
+
+        <p class="auth__error" *ngIf="error">{{ error }}</p>
+      </form>
+    </app-ui-card>
+  </div>
+</section>
