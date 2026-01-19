@@ -63,7 +63,6 @@ interface ApiBoardResponse {
 }
 
 interface ColumnVM extends ApiColumn {
-  // control local por columna para crear issue
   newTitle: FormControl<string>;
 }
 
@@ -186,7 +185,6 @@ export class BoardComponent implements OnInit {
   onDrop(event: CdkDragDrop<ApiIssue[]>, toCol: ColumnVM): void {
     if (!this.data) return;
 
-    // UI optimista
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {

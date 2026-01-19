@@ -57,7 +57,6 @@ export class LoginComponent {
     }),
   });
 
-  // prefer inject() for standalone components
   private auth = inject(AuthService);
   private router = inject(Router);
 
