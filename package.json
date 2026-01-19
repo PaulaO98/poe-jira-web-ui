@@ -13,6 +13,7 @@
     "lint:fix": "ng lint --fix",
     "format": "prettier --write \"src/*/.{ts,html,scss,json,md}\"",
     "format:check": "prettier --check \"src/*/.{ts,html,scss,json,md}\"",
+    "build:main": "ng build --configuration main",
     "prepare": "husky install"
   },
   "prettier": {
