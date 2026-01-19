@@ -1,4 +1,4 @@
-import { Injectable, PLATFORM_ID, inject, InjectionToken } from '@angular/core';
+import { Injectable, PLATFORM_ID, inject, InjectionToken, NgZone } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
@@ -18,6 +18,7 @@ export class AuthService {
 
   private api = inject(ApiService);
   private router = inject(Router);
+  private ngZone = inject(NgZone);
   private storage = inject(STORAGE);
 
   register(name: string, email: string, password: string) {
@@ -63,6 +64,17 @@ export class AuthService {
     }
   }
 
+  // allow setting token programmatically (used by refresh flow)
+  setToken(token: string | null) {
+    if (!this.isBrowser) return;
+    try {
+      if (token) this.storage?.setItem(this.key, token);
+      else this.storage?.removeItem(this.key);
+    } catch {
+      /* ignore */
+    }
+  }
+
   logout() {
     if (this.isBrowser) {
       try {
@@ -71,6 +83,35 @@ export class AuthService {
         /* ignore */
       }
       this.router.navigate(['/login']);
+    }
+  }
+
+  forceLogout() {
+    // clear token consistently
+    try {
+      this.setToken(null);
+    } catch {
+      try {
+        this.storage?.removeItem(this.key);
+      } catch {
+        /* ignore */
+      }
+    }
+
+    try {
+      this.ngZone.run(() => {
+        this.router.navigateByUrl('/login', { replaceUrl: true });
+      });
+    } catch {
+      // fallback to browser navigation if available
+      if (this.isBrowser && typeof window !== 'undefined') {
+        try {
+          window.location.replace('/login');
+        } catch {
+          // final best-effort: use href
+          window.location.href = '/login';
+        }
+      }
     }
   }
 

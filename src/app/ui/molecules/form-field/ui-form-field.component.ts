@@ -9,7 +9,7 @@
  * - hint: string
  * - error: string | null (renders error state when present)
  */
-import { Component, Input } from '@angular/core';
+import { AfterContentInit, Component, ElementRef, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -19,8 +19,19 @@ import { CommonModule } from '@angular/common';
   templateUrl: './ui-form-field.component.html',
   styleUrls: ['./ui-form-field.component.scss'],
 })
-export class UiFormFieldComponent {
+export class UiFormFieldComponent implements AfterContentInit {
   @Input() label = '';
   @Input() hint = '';
   @Input() error: string | null = null;
+
+  controlId = `field-${Math.random().toString(36).slice(2, 9)}`;
+
+  private host = inject(ElementRef) as ElementRef<HTMLElement>;
+
+  ngAfterContentInit(): void {
+    const el = this.host.nativeElement.querySelector('input, textarea, select');
+    if (el && !el.id) {
+      el.id = this.controlId;
+    }
+  }
 }
